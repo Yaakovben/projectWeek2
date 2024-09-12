@@ -1,0 +1,94 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: rgb(210, 233, 239);
+}
+bedy{
+    display: flex;
+    flex-direction: column;
+
+     
+}
+
+.topPage{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 50vh;
+    width: 100%;
+    gap: 8px;
+    background-color: black;
+}
+
+.from{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    height: 500px;
+    width: 600px;
+    font-size: 29px;
+    padding: 10px;
+    background-color: rgb(66, 60, 60);
+    
+}
+
+.Input{
+    background-color: black;
+    color: white;
+    height: 28px;
+    border-radius: 5px;
+}
+
+#submit{
+    background-color: rgb(20, 193, 20);
+}
+
+
+.textTop{
+    color:rgb(20, 193, 20); 
+    background: none;
+    font-size: 20px;
+}
+.hr{
+    width: 100%;
+}
+
+
+.BottomPage{ 
+    align-items: center;
+    height: 50vh;
+    width: 100%;
+    gap: 8px;
+    background-color: black;
+
+}
+.head{
+    background-color: white;
+    height:50px;
+    color: rgb(20, 193, 20);
+}
+.Table{
+    width: 100%;
+    
+    
+}
+
+
+.allBatton{
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 3px;
+}
+#fulname,#Remove,#Edit,#Mission{
+    background-color:  rgb(20, 193, 20);
+    width: 100px;
+    height: 25px;
+    border-radius: 8px;
+    text-align: center;
+}
+.allBatton{
+    text-align: center;
+}
