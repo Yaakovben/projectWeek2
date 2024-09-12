@@ -73,6 +73,12 @@ function displaiSolider() {
     newRow.appendChild(td3)
     newRow.appendChild(td1)
     newRow.appendChild(td5)
+    newRow.classList.add("Table")
     table.appendChild(newRow);
+    
+    
 }
 
+window.onload = function() {
+    loadPersonnel();
+};
