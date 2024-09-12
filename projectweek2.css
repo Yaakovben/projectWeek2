@@ -10,7 +10,7 @@ bedy{
 
      
 }
-/*  */
+
 .topPage{
     display: flex;
     flex-direction: column;
@@ -71,6 +71,7 @@ bedy{
 }
 .Table{
     width: 100%;
+    text-align: center;
     
     
 }
@@ -84,10 +85,9 @@ bedy{
 }
 #fulname,#Remove,#Edit,#Mission{
     background-color:  rgb(20, 193, 20);
-    width: 100px;
-    height: 25px;
     border-radius: 8px;
-    text-align: center;
+   
+    
 }
 .allBatton{
     text-align: center;
