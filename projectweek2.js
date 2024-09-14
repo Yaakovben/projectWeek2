@@ -19,28 +19,17 @@ function addSoldier() {
         missionLength: mission.value,
         status: statuss.value
     };
-
     let soldierList = JSON.parse(localStorage.getItem("personnel")) || [];
     soldierList.push(personnel);
     localStorage.setItem("personnel", JSON.stringify(soldierList));
-
     // קריאה לפונקציה שמציגה את הטבלה
     displaySoldier(personnel);
-
     // ניקוי נתונים
     fullName.value = "";
     rank.value = "";
     position.value = "";
     platoom.value = "";
     mission.value = "";
-}
-
-// פונקציית טעינת כל החיילים וקריאה לפונקציית הצגה על המסך עבור כל חייך
-function loadPersonnel() {
-    let List = JSON.parse(localStorage.getItem("personnel")) || [];
-    List.forEach(personnel => {
-        displaySoldier(personnel);
-    });
 }
 
 // פונקציית הצגת כל החיילים בטבלה
@@ -57,6 +46,7 @@ function displaySoldier(personnel) {
     let td5 = document.createElement("td");
     let td6 = document.createElement("td");
     td6.classList.add("allBatton");
+    
     //הכנסת תוכן מהאובייקט לאברים שבטבלה
     td1.textContent = personnel.fullName;
     td2.textContent = personnel.rank;
@@ -77,12 +67,15 @@ function displaySoldier(personnel) {
 
 
     let editButton = document.createElement("button");
-    editButton.textContent = "Mission";
+    editButton.textContent = "Edit";
     editButton.classList.add("Input");
     editButton.classList.add("NB");
 
+    //  האזנה לכפתור עריכה
+   editButton.addEventListener("click",() => OpenWindew(personnel))
+
     let extraButton = document.createElement("button");
-    extraButton.textContent = "Edit";
+    extraButton.textContent = "Mission";
     extraButton.classList.add("Input");
     extraButton.classList.add("NB");
 
@@ -114,6 +107,137 @@ function deleteSoldier(row, fullName) {
 }
 
 
-window.onload = function() {
+
+
+
+
+//  פונקציית פתיחת חלון לעריכת פרטי חייל
+function OpenWindew(personnel){
+    // שמירת החלון במשתנה
+    let clickEdit = document.getElementById("window")
+    // שמירת האינפוטים של החלון במשתנה
+    let fullNameNew = document.getElementById("fullNameNew")
+    let rankNew = document.getElementById("rankNew")
+    let positionNew = document.getElementById("positionNew")
+    let platoomNew = document.getElementById("platoomNew")
+    let missionTimeNew = document.getElementById("missionTimeNew")
+    // הכנסת התוכן של אותו חייל לחלון עריכה
+    fullNameNew.value = personnel.fullName;
+    rankNew.value = personnel.rank;
+    positionNew.value = personnel.position;
+    platoomNew.value = personnel.platoom;
+    missionTimeNew.value =personnel.missionLength
+    clickEdit.style.display ="flex"
+    // שמירת לחצן אישור עריכה במשתנה
+    let enterEdit = document.getElementById("editNew")
+    // האזנה ללחצן אשור עריכה ושליחת פרמטר של אותו חייל שעורכים
+    enterEdit.addEventListener("click",() => submitEdit(personnel))
+}
+
+
+
+// פונקציית עדכון החייל
+function submitEdit(personnel){
+    // תפיסת כל הערכים החדשים שהוכנסו
+    let fullNameNew = document.getElementById("fullNameNew").value
+    let rankNew = document.getElementById("rankNew").value
+    let positionNew = document.getElementById("positionNew").value
+    let platoomNew = document.getElementById("platoomNew").value
+    let missionTimeNew = document.getElementById("missionTimeNew").value
+    // תפיסת כל מה ששמור במשתנה
+    let all = JSON.parse(localStorage.getItem("personnel") || [])
+    // מציאת החייל שאנחנו עורכים 
+    let indexPersonnel = all.find(p => p.fullName === personnel.fullName);
+    // החלפת התנונים הישנים של החייל בחדשים
+    indexPersonnel.fullName = fullNameNew;
+    indexPersonnel.rank = rankNew;
+    indexPersonnel.position = positionNew;
+    indexPersonnel.platoom = platoomNew;
+    indexPersonnel.missionLength = missionTimeNew;
+    localStorage.setItem("personnel",JSON.stringify(all))
+    //קריאה לפונקצייה שסוגרת את החלון עריכה
+    closeWindow();
+    // רענון העמוד
+    location.reload();
+}
+
+
+
+// האזנה לכפתור סגירת חלון
+let clickClose = document.getElementById("Exit")
+clickClose.addEventListener("click",closeWindow)
+
+// פונקציית סגירת חלון לעריכת פרטי חייל
+function closeWindow() {
+    let clickEdit = document.getElementById("window")
+    clickEdit.style.display = "none"   
+}
+
+
+
+
+
+
+// פונקציית טעינת כל החיילים וקריאה לפונקציית הצגה על המסך עבור כל חייך
+function loadPersonnel() {
+    let List = JSON.parse(localStorage.getItem("personnel")) || [];
+    List.forEach(p => {
+        displaySoldier(p);
+    });
+}
+
+window.onload = () => {
     loadPersonnel();
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function nums(ListNum) {
+    let up = true;
+    let down = true; 
+
+for( i = 0; i < ListNum.length -1; i++){
+    if(ListNum[i] > ListNum[i+1]){
+        up = false;
+    }
+    if (ListNum[i] < ListNum[i+1]){
+        down = false;
+    } 
+}
+if( up == true && down == false){
+    return 1;
+}
+else if ( up == false && down == true){
+    return 2;
+}
+else{
+    return 0;
+}
+}
+console.log(nums([1, 2, 3, 4, 1, 0]));

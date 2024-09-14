@@ -103,5 +103,46 @@ bedy{
 }
 
 
+#window{
+    position: fixed;
+    display:none;
+    flex-direction: column;
+    justify-content: space-around;
+    top: 20%;
+    right: 40%;
+    height: 500px;
+    width: 500px;
+    align-items: center;
+    font-size: 29px;
+    border: 1px solid black;
+    
+}
+
+ /* לסגירת החלון X לחצן  */
+ #Exit{
+    position: absolute;
+       right:  0px;
+       top: 0px;
+       border: none;
+       background: none;
+       font-size: 25px;  
+    }
+    
+    #Exit:hover{
+        background-color: rgb(103, 201, 195); 
+    }
+    
+    
+    /* לחצן שליחת מייל חדש */
+    #editNew{
+        font-size: 30px;
+        width: 150px;
+        background-color: green;   
+    }
+    #editNew:hover{
+        background-color: rgb(4, 68, 4);
+    }
+
+
 
 
